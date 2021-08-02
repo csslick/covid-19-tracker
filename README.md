@@ -1,6 +1,6 @@
 # covid-19-tracker
 covid-19 Tracker  
-demo: 
+demo: https://csslick.github.io/covid-19-tracker/
 
 참조  
 http://ncov.mohw.go.kr/bdBoardList_Real.do  
