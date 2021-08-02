@@ -1,0 +1,100 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+select:focus {
+  outline: none;
+}
+
+select:hover {
+  opacity: 0.85;
+}
+
+body {
+  height: 100vh;
+  font-family: 'Courier New', Courier, monospace;
+  text-align: center;
+}
+
+#main {
+  position: relative;
+  background: #efefef;
+  height: 100vh;
+}
+
+#main header {
+  background: #000;
+  color: #fff;
+  padding: 60px 1rem;
+}
+
+#main .board {
+  background: #fff;
+  max-width: 800px;
+  margin: 0 auto;
+  border-radius: 20px;
+  box-shadow: 2px 2px 14px rgba(0, 0, 0, 0.1);
+  transform: translateY(-30px);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 80px 2em 60px;
+}
+
+#main .board .card {
+  width: calc(100% / 3 - 1em);
+  background: #ccc;
+  margin-bottom: 1em;
+  padding: 1em;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.card.country {
+  background: #00cec9!important;
+}
+
+.card.active {
+  background: #e17055!important;
+}
+
+.card.deaths {
+  background: #b2bec3!important;
+}
+
+.card.recovered {
+  background: #00b894!important;
+}
+
+.card.confirmed {
+  background: #fdcb6e!important;
+}
+
+.card.date{
+  background: #0984e3!important;
+}
+
+.card span {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+/* 아이콘 */
+.bx {
+  font-size: 64px;
+  color: #fff;
+}
+
+.card h3 {
+  margin-top: 1rem;
+  font-weight: normal;
+}
+
+/* 드롭다운 메뉴 */
+#main #dropdown {
+  margin-top: 1em;
+  padding: 5px 1em;
+}
+
+
