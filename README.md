@@ -3,7 +3,7 @@ covid-19 Tracker
 
 1. 일별 확진자 정보
 2. 국가별 조회
-3. 추이 그래프(미구현)
+3. 추이 그래프
 
 demo: https://csslick.github.io/covid-19-tracker/
 

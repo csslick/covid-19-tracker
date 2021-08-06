@@ -10,7 +10,8 @@ function getCovidData(country) {
     })
     .then(function(data) {
       console.log(data);
-      showCovidData(data);
+      showCovidData(data);  // 현황판
+      showGraph(data); // 추세그래프
     });
 }  
 
@@ -47,7 +48,46 @@ function showCovidData(data) {
   recoveredEl.innerHTML = recoveredDay.toLocaleString();
   confirmedEl.innerHTML = confirmedDay.toLocaleString();
   dateEl.innerHTML = date;
+
 }  
+
+function showGraph(cdata) {
+  // 날짜라벨
+  const date = new Date().getDate()
+  const labels = [
+    date-8 <= 0 ? 31+(date-8) : date-8, 
+    date-7 <= 0 ? 31+(date-7) : date-7, 
+    date-6 <= 0 ? 31+(date-6) : date-6 , 
+    date-5 <= 0 ? 31+(date-5) : date-5 , 
+    date-4 <= 0 ? 31+(date-4) : date-4 , 
+    date-3 <= 0 ? 31+(date-3) : date-3 , 
+    date-2 <= 0 ? 31+(date-2) : date-2
+  ];
+
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: '최근 일주간 코로나 확진자 추이(일별)',
+      backgroundColor: 'rgb(255, 99, 132)',
+      borderColor: 'rgb(255, 99, 132)',
+      data: [],
+    }]
+  };
+
+  // 최근 일주간 추이
+  for(let i = cdata.length-7; i <= cdata.length - 1;  i++)  {
+    console.log(`${i} = ${cdata[i].Confirmed}`)
+    data.datasets[0].data.push(cdata[i].Confirmed - cdata[i-1].Confirmed)
+  }
+  console.log('data = ' +  data.datasets[0].data);
+
+  const config = {
+    type: 'line',
+    data,
+    options: {}
+  };
+  var myChart = new Chart(document.getElementById('myChart'), config);
+}
 
 // 이벤트
 const dropdown = document.getElementById('dropdown');

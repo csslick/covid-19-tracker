@@ -12,7 +12,7 @@ select:hover {
 }
 
 body {
-  height: 100vh;
+  /* height: 100vh; */
   font-family: 'Courier New', Courier, monospace;
   text-align: center;
 }
@@ -20,7 +20,8 @@ body {
 #main {
   position: relative;
   background: #efefef;
-  height: 100vh;
+  /* height: 100vh; */
+  padding-bottom: 50px;
 }
 
 #main header {
@@ -98,3 +99,9 @@ body {
 }
 
 
+/* 챠트 */
+#main figure.board {
+  transform: translateY(0px);
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

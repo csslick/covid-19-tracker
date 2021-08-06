@@ -8,6 +8,7 @@
   <title>Covid-19 Data</title>
   <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <section id="main">
@@ -22,41 +23,48 @@
         <option value="india">인도</option>
       </select>
     </header>
+    
     <div class="board">
-      <div class="card country">
-        <i class='bx bx-current-location'></i>
-        <h3>발생국가</h3>
-        <span id="country"></span>
-      </div>
-      <div class="card active">
-        <i class='bx bx-home'></i>
-        <h3>격리자</h3>
-        <span id="active"></span>
-      </div>
-      <div class="card deaths">
-        <i class='bx bx-dizzy'></i>
-        <h3>사망자</h3>
-        <span id="deaths"></span>
-      </div>
-      <div class="card recovered">
-        <i class='bx bx-smile'></i>
-        <h3>격리해제</h3>
-        <span id="recovered"></span>
-      </div>
-      <div class="card confirmed">
-        <i class='bx bx-user-check'></i>
-        <h3>확진자</h3>
-        <span id="confirmed"></span>
-      </div>
-      <div class="card date">
-        <i class='bx bxs-calendar' ></i>
-        <h3>검사일</h3>
-        <span id="date"></span>
-      </div>
+    <div class="card country">
+      <i class='bx bx-current-location'></i>
+      <h3>발생국가</h3>
+      <span id="country"></span>
+    </div>
+    <div class="card active">
+      <i class='bx bx-home'></i>
+      <h3>격리자</h3>
+      <span id="active"></span>
+    </div>
+    <div class="card deaths">
+      <i class='bx bx-dizzy'></i>
+      <h3>사망자</h3>
+      <span id="deaths"></span>
+    </div>
+    <div class="card recovered">
+      <i class='bx bx-smile'></i>
+      <h3>격리해제</h3>
+      <span id="recovered"></span>
+    </div>
+    <div class="card confirmed">
+      <i class='bx bx-user-check'></i>
+      <h3>확진자</h3>
+      <span id="confirmed"></span>
+    </div>
+    <div class="card date">
+      <i class='bx bxs-calendar' ></i>
+      <h3>검사일</h3>
+      <span id="date"></span>
+    </div>
     </div><!-- end board -->
+    
+    <figure id="chart" class="board">
+      <canvas id="myChart"></canvas>
+    </figure>
+
     <small>검사결과는 매일 0시 기준입니다.</small>
   </section>
 
   <script src="main.js"></script>
+
 </body>
 </html>
