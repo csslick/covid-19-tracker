@@ -14,10 +14,12 @@
     <header>
       <h2>코로나19(COVID-19) 실시간 상황판</h2>
       <select name="dropdown" id="dropdown">
-        <option value="kr">한국</option>
-        <option value="us">미국</option>
-        <option value="jp">일본</option>
-        <option value="cn">중국</option>
+        <option value="south-korea">한국</option>
+        <option value="usa">미국</option>
+        <option value="united-kingdom">영국</option>
+        <option value="japan">일본</option>
+        <option value="china">중국</option>
+        <option value="india">인도</option>
       </select>
     </header>
     <div class="board">
@@ -28,22 +30,22 @@
       </div>
       <div class="card active">
         <i class='bx bx-home'></i>
-        <h3>격리자(누적)</h3>
+        <h3>격리자</h3>
         <span id="active"></span>
       </div>
       <div class="card deaths">
         <i class='bx bx-dizzy'></i>
-        <h3>사망자(누적)</h3>
+        <h3>사망자</h3>
         <span id="deaths"></span>
       </div>
       <div class="card recovered">
         <i class='bx bx-smile'></i>
-        <h3>격리해제(누적)</h3>
+        <h3>격리해제</h3>
         <span id="recovered"></span>
       </div>
       <div class="card confirmed">
         <i class='bx bx-user-check'></i>
-        <h3>확진자(누적)</h3>
+        <h3>확진자</h3>
         <span id="confirmed"></span>
       </div>
       <div class="card date">
@@ -52,7 +54,7 @@
         <span id="date"></span>
       </div>
     </div><!-- end board -->
-    <small>본 검사결과는 국가별로 지역별 수집 및 관리체계가 다를 수 있어 결과가 상이하게 보일 수 있습니다.</small>
+    <small>검사결과는 매일 0시 기준입니다.</small>
   </section>
 
   <script src="main.js"></script>
