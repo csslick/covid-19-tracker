@@ -2,6 +2,7 @@
 
 // 국가별 코로나 일별 누적 조회
 const API_URL = `https://api.covid19api.com/total/dayone/country/`;
+let myChart = null; // 챠트 객체 변수
 
 function getCovidData(country) {
   fetch(`${API_URL}${country}`)
@@ -11,7 +12,7 @@ function getCovidData(country) {
     .then(function(data) {
       console.log(data);
       showCovidData(data);  // 현황판
-      showGraph(data); // 추세그래프
+      showChart(data); // 추세그래프
     });
 }  
 
@@ -19,18 +20,18 @@ function showCovidData(data) {
   // 국가(지역)
   const country = data[data.length-1].Country;
   // 격리자
-  const active = data[data.length-1].Active;
-  const activeDay = data[data.length-1].Active - data[data.length-2].Active;;
+  const active = data[data.length-2].Active;
+  const activeDay = data[data.length-2].Active - data[data.length-3].Active;;
   // 사망자
-  const deaths = data[data.length-1].Deaths;
-  const deathsDay = data[data.length-1].Deaths - data[data.length-2].Deaths;
+  const deaths = data[data.length-2].Deaths;
+  const deathsDay = data[data.length-2].Deaths - data[data.length-3].Deaths;
   // 격리해제
-  const recovered = data[data.length-1].Recovered;
-  const recoveredDay = data[data.length-1].Recovered - data[data.length-2].Recovered;;
+  const recovered = data[data.length-2].Recovered;
+  const recoveredDay = data[data.length-2].Recovered - data[data.length-3].Recovered;;
   // 확진자
-  const confirmed = data[data.length-1].Confirmed;
-  const confirmedDay = data[data.length-1].Confirmed - data[data.length-2].Confirmed;
-  const date = data[data.length-1].Date.slice(0, 10);
+  const confirmed = data[data.length-2].Confirmed;
+  const confirmedDay = data[data.length-2].Confirmed - data[data.length-3].Confirmed;
+  const date = data[data.length-2].Date.slice(0, 10);
   console.log(country, active, deaths, recovered, confirmed, date);
 
   // DOM 엘리먼트 선택
@@ -51,17 +52,16 @@ function showCovidData(data) {
 
 }  
 
-function showGraph(cdata) {
+function showChart(cdata) {
   // 날짜라벨
-  const date = new Date().getDate()
   const labels = [
-    date-8 <= 0 ? 31+(date-8) : date-8, 
-    date-7 <= 0 ? 31+(date-7) : date-7, 
-    date-6 <= 0 ? 31+(date-6) : date-6 , 
-    date-5 <= 0 ? 31+(date-5) : date-5 , 
-    date-4 <= 0 ? 31+(date-4) : date-4 , 
-    date-3 <= 0 ? 31+(date-3) : date-3 , 
-    date-2 <= 0 ? 31+(date-2) : date-2
+    cdata[cdata.length-8].Date.slice(5, 10), 
+    cdata[cdata.length-7].Date.slice(5, 10), 
+    cdata[cdata.length-6].Date.slice(5, 10), 
+    cdata[cdata.length-5].Date.slice(5, 10), 
+    cdata[cdata.length-4].Date.slice(5, 10), 
+    cdata[cdata.length-3].Date.slice(5, 10), 
+    cdata[cdata.length-2].Date.slice(5, 10)
   ];
 
   const data = {
@@ -75,9 +75,9 @@ function showGraph(cdata) {
   };
 
   // 최근 일주간 추이
-  for(let i = cdata.length-7; i <= cdata.length - 1;  i++)  {
+  for(let i = cdata.length-8; i <= cdata.length - 2;  i++)  {
     console.log(`${i} = ${cdata[i].Confirmed}`)
-    data.datasets[0].data.push(cdata[i].Confirmed - cdata[i-1].Confirmed)
+    data.datasets[0].data.push(cdata[i].Confirmed - cdata[i - 1].Confirmed)
   }
   console.log('data = ' +  data.datasets[0].data);
 
@@ -86,14 +86,17 @@ function showGraph(cdata) {
     data,
     options: {}
   };
-  var myChart = new Chart(document.getElementById('myChart'), config);
+
+  myChart = new Chart(document.getElementById('myChart'), config);
 }
 
 // 이벤트
 const dropdown = document.getElementById('dropdown');
+
 dropdown.addEventListener('change', function(){
   const country = this.value;
   console.log(country);
+  myChart.destroy();  // 차트 초기화
   getCovidData(country);
 });
 
